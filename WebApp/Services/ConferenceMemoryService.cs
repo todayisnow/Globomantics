@@ -27,6 +27,7 @@ namespace WebApp.Services
             return Task.Run(() => conferences.AsEnumerable());
         }
 
+        
         public Task<ConferenceModel> GetById(int id)
         {
             return Task.Run(() => conferences.First(c => c.Id == id));
@@ -45,3 +46,4 @@ namespace WebApp.Services
         }
     }
 }
+
