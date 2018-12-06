@@ -40,56 +40,57 @@ namespace WebApp
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStatusCodePages();
             app.UseStaticFiles();
-            app.Use(async (context, next) =>
-            {
-                await context.Response.WriteAsync("First");
-                await next();
-            });
-            app.Use(next =>
-            {
-                return async context =>
-                {
-                    await context.Response.WriteAsync("-");
-                    await next(context);
-                };
-            });
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("secod");
-            });
+            //app.Use(async (context, next) =>
+            //{
+            //    await context.Response.WriteAsync("First");
+            //    await next();
+            //});
+            //app.Use(next =>
+            //{
+            //    return async context =>
+            //    {
+            //        await context.Response.WriteAsync("-");
+            //        await next(context);
+            //    };
+            //});
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("secod");
+            //});
 
             //    log.LogError("ddddd");
-            //    app.Use(next =>
+            //app.Use(next =>
+            //{
+            //    return async context =>
             //    {
-            //        return async context =>
+            //        log.LogInformation("Incomming Request");
+            //        if (context.Request.Path.StartsWithSegments("/mym"))
             //        {
-            //            log.LogInformation("Incomming Request");
-            //            if (context.Request.Path.StartsWithSegments("/mym"))
-            //            {
-            //                await context.Response.WriteAsync("Hit Custom Middleware");
-            //                log.LogInformation("Handled Request");
+            //            await context.Response.WriteAsync("Hit Custom Middleware");
+            //            log.LogInformation("Handled Request");
 
-            //            }
-            //            else
-            //            {
-            //                await next(context);
-            //                log.LogInformation("outgoing Response");
+            //        }
+            //        else
+            //        {
+            //            await next(context);
+            //            log.LogInformation("outgoing Response");
 
-            //            }
-            //        };
-            //    });
-            //    app.UseMvc(routes =>
-            //    {
-            //        routes.MapRoute(
-            //            name: "default",
-            //            template: "{controller=Conference}/{action=Index}/{id?}");
-            //    });
-            //    CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
-            //}
-            
+            //        }
+            //    };
+            //});
+            app.UseMvc(routes =>
+            {
+                log.LogInformation("ddd");
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Conference}/{action=Index}/{id?}");
+            });
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
         }
-        public int X(int y) => y;
+
     }
+
 }
+
